@@ -56,6 +56,14 @@ npm run dev
 Aplicacao esperada em:
 - `http://localhost:5173`
 
+### 4. Subir tudo pela raiz
+```bash
+npm install
+npm run dev
+```
+
+Esse comando sobe backend e frontend juntos.
+
 ## Build
 ```bash
 cd backend
