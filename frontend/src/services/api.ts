@@ -5,7 +5,7 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('@microblog:token')
+  const token = localStorage.getItem('@DevConnect:token')
 
   if (token) {
     config.headers = config.headers ?? {}

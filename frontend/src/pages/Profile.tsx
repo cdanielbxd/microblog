@@ -58,24 +58,24 @@ export default function Profile() {
       <Header />
 
       <main className="mx-auto w-full max-w-5xl px-4 py-8">
-        <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          {loading ? <p className="text-slate-600">Carregando perfil...</p> : null}
-          {error ? <p className="text-red-600">{error}</p> : null}
+        <section className="card-base">
+          {loading ? <p className="text-slate-400">Carregando perfil...</p> : null}
+          {error ? <p className="text-red-500">{error}</p> : null}
 
           {!loading && !error && profile ? (
             <>
-              <div className="flex flex-col gap-2 border-b border-slate-200 pb-6">
-                <h1 className="text-3xl font-bold text-slate-900">{profile.name}</h1>
-                <p className="text-slate-500">@{profile.username}</p>
-                <p className="text-slate-700">{profile.bio || 'Este perfil ainda nao possui bio.'}</p>
-                {isOwnProfile ? <p className="text-sm font-medium text-blue-600">Este e o seu perfil publico.</p> : null}
+              <div className="flex flex-col gap-2 border-b border-slate-700 pb-6">
+                <h1 className="text-3xl font-bold text-white">{profile.name}</h1>
+                <p className="text-slate-400">@{profile.username}</p>
+                <p className="text-slate-300">{profile.bio || 'Este perfil ainda nao possui bio.'}</p>
+                {isOwnProfile ? <p className="text-sm font-medium text-devconnect-300">Este e o seu perfil publico.</p> : null}
               </div>
 
               <div className="mt-6 space-y-4">
-                <h2 className="text-2xl font-semibold text-slate-900">Posts</h2>
+                <h2 className="text-2xl font-semibold text-white">Posts</h2>
 
                 {posts.length === 0 ? (
-                  <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-slate-500">
+                  <p className="rounded-2xl border border-dashed border-slate-700 bg-slate-900 p-6 text-slate-400">
                     Este perfil ainda nao publicou nenhum post.
                   </p>
                 ) : null}
@@ -90,12 +90,12 @@ export default function Profile() {
                   type="button"
                   onClick={() => setPage((currentPage) => Math.max(1, currentPage - 1))}
                   disabled={page === 1}
-                  className="rounded-full border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-full border border-slate-700 bg-slate-900 px-4 py-2 text-sm text-slate-200 hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Anterior
                 </button>
 
-                <span className="text-sm text-slate-600">
+                <span className="text-sm text-slate-400">
                   Pagina {page} de {totalPages}
                 </span>
 
@@ -103,7 +103,7 @@ export default function Profile() {
                   type="button"
                   onClick={() => setPage((currentPage) => (currentPage < totalPages ? currentPage + 1 : currentPage))}
                   disabled={page >= totalPages}
-                  className="rounded-full border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-full border border-slate-700 bg-slate-900 px-4 py-2 text-sm text-slate-200 hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Proxima
                 </button>

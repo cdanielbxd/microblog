@@ -52,13 +52,13 @@ export default function Register() {
       <Header />
 
       <main className="mx-auto flex w-full max-w-5xl items-center justify-center px-4 py-8">
-        <section className="w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h1 className="text-3xl font-bold text-slate-900">Criar conta</h1>
-          <p className="mt-2 text-slate-600">Preencha os dados para criar seu usuario e perfil publico.</p>
+        <section className="w-full max-w-xl card-base">
+          <h1 className="text-3xl font-bold text-white">Criar conta</h1>
+          <p className="mt-2 text-slate-300">Preencha os dados para criar seu usuario e perfil publico.</p>
 
           <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
             <div>
-              <label htmlFor="name" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="name" className="mb-1 block text-sm font-medium text-slate-300">
                 Nome
               </label>
               <input
@@ -66,14 +66,14 @@ export default function Register() {
                 value={formData.name}
                 onChange={(event) => updateField('name', event.target.value)}
                 autoComplete="name"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="input-base"
                 placeholder="Seu nome"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-300">
                 Username
               </label>
               <input
@@ -81,14 +81,14 @@ export default function Register() {
                 value={formData.username}
                 onChange={(event) => updateField('username', event.target.value)}
                 autoComplete="username"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="input-base"
                 placeholder="seu_username"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-300">
                 E-mail
               </label>
               <input
@@ -97,14 +97,14 @@ export default function Register() {
                 value={formData.email}
                 onChange={(event) => updateField('email', event.target.value)}
                 autoComplete="email"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="input-base"
                 placeholder="voce@email.com"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-300">
                 Senha
               </label>
               <input
@@ -113,39 +113,35 @@ export default function Register() {
                 value={formData.password}
                 onChange={(event) => updateField('password', event.target.value)}
                 autoComplete="new-password"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="input-base"
                 placeholder="Minimo de 6 caracteres"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="bio" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="bio" className="mb-1 block text-sm font-medium text-slate-300">
                 Bio
               </label>
               <textarea
                 id="bio"
                 value={formData.bio}
                 onChange={(event) => updateField('bio', event.target.value)}
-                className="min-h-28 w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="min-h-28 w-full input-base"
                 placeholder="Conte um pouco sobre voce"
               />
             </div>
 
             {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="rounded-2xl bg-blue-600 px-4 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
-            >
+            <button type="submit" disabled={loading} className="btn-primary">
               {loading ? 'Cadastrando...' : 'Cadastrar'}
             </button>
           </form>
 
-          <p className="mt-4 text-sm text-slate-600">
+          <p className="mt-4 text-sm text-slate-400">
             Ja possui conta?{' '}
-            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-700">
+            <Link to="/login" className="font-medium text-devconnect-300 hover:text-devconnect-200">
               Entrar
             </Link>
           </p>

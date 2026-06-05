@@ -36,13 +36,13 @@ export default function Login() {
       <Header />
 
       <main className="mx-auto flex min-h-[calc(100vh-73px)] w-full max-w-5xl items-center justify-center px-4 py-8">
-        <section className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h1 className="text-3xl font-bold text-slate-900">Entrar</h1>
-          <p className="mt-2 text-slate-600">Use seu e-mail e senha para acessar o microblog.</p>
+        <section className="w-full max-w-md card-base">
+          <h1 className="text-3xl font-bold text-white">Entrar</h1>
+          <p className="mt-2 text-slate-300">Use seu e-mail e senha para acessar o DevConnect.</p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
-              <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-300">
                 E-mail
               </label>
               <input
@@ -51,14 +51,14 @@ export default function Login() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 autoComplete="email"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="input-base"
                 placeholder="voce@email.com"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-700">
+              <label htmlFor="password" className="mb-1 block text-sm font-medium text-slate-300">
                 Senha
               </label>
               <input
@@ -67,7 +67,7 @@ export default function Login() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 autoComplete="current-password"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500"
+                className="input-base"
                 placeholder="Sua senha"
                 required
               />
@@ -75,18 +75,14 @@ export default function Login() {
 
             {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-2xl bg-blue-600 px-4 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
-            >
+            <button type="submit" disabled={loading} className="w-full btn-primary">
               {loading ? 'Entrando...' : 'Entrar'}
             </button>
           </form>
 
-          <p className="mt-4 text-sm text-slate-600">
+          <p className="mt-4 text-sm text-slate-400">
             Ainda nao tem conta?{' '}
-            <Link to="/register" className="font-medium text-blue-600 hover:text-blue-700">
+            <Link to="/register" className="font-medium text-devconnect-300 hover:text-devconnect-200">
               Criar cadastro
             </Link>
           </p>

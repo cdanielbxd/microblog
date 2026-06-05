@@ -48,6 +48,7 @@ export const postsController = {
       await postsService.delete(request.params.id, request.user.profileId)
       return reply.status(204).send()
     } catch (err: unknown) {
+      request.log.error({ err, postId: request.params.id, profileId: request.user?.profileId }, 'Erro ao excluir post')
       const message = err instanceof Error ? err.message : 'Erro interno'
       if (message === 'Forbidden') {
         return reply.status(403).send({ message: 'Proibido' })

@@ -17,8 +17,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null)
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('@microblog:token')
-    const storedUser = localStorage.getItem('@microblog:user')
+    const storedToken = localStorage.getItem('@DevConnect:token')
+    const storedUser = localStorage.getItem('@DevConnect:user')
 
     if (storedToken && storedUser) {
       setToken(storedToken)
@@ -29,15 +29,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   function login(userData: AuthUser, userToken: string) {
     setUser(userData)
     setToken(userToken)
-    localStorage.setItem('@microblog:token', userToken)
-    localStorage.setItem('@microblog:user', JSON.stringify(userData))
+    localStorage.setItem('@DevConnect:token', userToken)
+    localStorage.setItem('@DevConnect:user', JSON.stringify(userData))
   }
 
   function logout() {
     setUser(null)
     setToken(null)
-    localStorage.removeItem('@microblog:token')
-    localStorage.removeItem('@microblog:user')
+    localStorage.removeItem('@DevConnect:token')
+    localStorage.removeItem('@DevConnect:user')
   }
 
   return (

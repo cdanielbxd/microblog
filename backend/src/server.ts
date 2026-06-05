@@ -14,8 +14,15 @@ if (!process.env.JWT_SECRET) {
 const fastify = Fastify({ logger: true })
 
 async function start() {
+  fastify.addHook('onRequest', async (request) => {
+    request.log.info({ method: request.method, url: request.url }, 'Requisicao recebida')
+  })
+
   await fastify.register(cors, {
     origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type'],
+    exposedHeaders: ['Authorization'],
     credentials: true,
   })
 

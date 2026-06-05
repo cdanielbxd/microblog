@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { getApiErrorMessage } from '../services/getApiErrorMessage'
@@ -24,6 +24,11 @@ export default function PostCard({ post, onDeleted }: PostCardProps) {
   const [error, setError] = useState('')
 
   const isOwner = isAuthenticated && user?.profile.username === post.profile.username
+  const rotationClass = useMemo(() => {
+    const rotations = ['-rotate-2', '-rotate-1', 'rotate-1', 'rotate-2']
+    const hash = Array.from(post.id.toString()).reduce((acc, char) => acc + char.charCodeAt(0), 0)
+    return rotations[hash % rotations.length]
+  }, [post.id])
 
   async function handleDelete() {
     const confirmed = window.confirm('Tem certeza que deseja excluir este post?')
@@ -44,26 +49,26 @@ export default function PostCard({ post, onDeleted }: PostCardProps) {
   }
 
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <article className={`postit-card ${rotationClass} transition-all duration-300 hover:scale-105 hover:shadow-2xl`}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <Link
             to={`/perfil/${post.profile.username}`}
-            className="text-lg font-semibold text-slate-900 hover:text-blue-600"
+            className="text-lg font-semibold text-slate-950 hover:text-devconnect-700"
           >
             {post.profile.name}
           </Link>
-          <p className="text-sm text-slate-500">@{post.profile.username}</p>
+          <p className="text-sm text-slate-950/80">@{post.profile.username}</p>
         </div>
 
-        <p className="text-sm text-slate-400">{formatarData(post.createdAt)}</p>
+        <p className="text-sm text-slate-950/70">{formatarData(post.createdAt)}</p>
       </div>
 
-      <p className="mt-4 whitespace-pre-wrap text-slate-700">{post.content}</p>
+      <p className="mt-4 whitespace-pre-wrap text-base text-slate-950">{post.content}</p>
 
       {isOwner ? (
         <div className="mt-4 flex items-center gap-3">
-          <Link to={`/post/editar/${post.id}`} className="text-sm font-medium text-blue-600 hover:text-blue-700">
+          <Link to={`/post/editar/${post.id}`} className="text-sm font-medium text-devconnect-600 hover:text-devconnect-700">
             Editar
           </Link>
           <button
